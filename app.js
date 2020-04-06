@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const fs = require("fs");
 
 const allEmployee = [];
 let id = 1;
@@ -10,7 +11,7 @@ function menu() {
     .prompt({
       type: "list",
       message: "What do you want to do?",
-      choices: ["add manager", "add engineer", "add intern"],
+      choices: ["add manager", "add engineer", "add intern", "Exit"],
       name: "addEmployee",
     })
     .then(function (input) {
@@ -21,8 +22,16 @@ function menu() {
       } else if (input.addEmployee === "add intern") {
         addIntern();
       }
+      else if(input.addEmployee === "Exit") {
+        exit();
+      }
     });
 }
+
+function exit(){
+  
+}
+
 function addEngineer() {
   inquirer
     .prompt([
@@ -84,10 +93,11 @@ function addIntern() {
         input.employeeEmail,
         input.schoolName
       );
-    });
+      allEmployee.push(intern);
 
-  allEmployee.push(intern);
-  console.log(allEmployee);
+      console.log(allEmployee);
+      menu();
+    });
 }
 
 function addManager() {

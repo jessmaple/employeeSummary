@@ -11,44 +11,117 @@ function menu() {
       type: "list",
       message: "What do you want to do?",
       choices: ["add manager", "add engineer", "add intern"],
-      name: "addEmployee"
+      name: "addEmployee",
     })
-    .then(function(input) {
+    .then(function (input) {
       if (input.addEmployee === "add manager") {
         addManager();
+      } else if (input.addEmployee === "add engineer") {
+        addEngineer();
+      } else if (input.addEmployee === "add intern") {
+        addIntern();
       }
     });
 }
+function addEngineer() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is your name?",
+        name: "employeeName",
+      },
+
+      {
+        type: "input",
+        message: "what is your email?",
+        name: "employeeEmail",
+      },
+
+      {
+        type: "input",
+        message: "what is your github?",
+        name: "github",
+      },
+    ])
+    .then(function (input) {
+      let engineer = new Engineer(
+        input.employeeName,
+        id++,
+        input.employeeEmail,
+        input.github
+      );
+
+      allEmployee.push(engineer);
+      console.log(allEmployee);
+      menu();
+    });
+}
+
+function addIntern() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is your name?",
+        name: "employeeName",
+      },
+      {
+        type: "input",
+        message: "What is your email?",
+        name: "employeeEmail",
+      },
+      {
+        type: "input",
+        message: "what is your school name?",
+        name: "schoolName",
+      },
+    ])
+    .then(function (input) {
+      let intern = new Intern(
+        input.employeeName,
+        id++,
+        input.employeeEmail,
+        input.schoolName
+      );
+    });
+
+  allEmployee.push(intern);
+  console.log(allEmployee);
+}
+
 function addManager() {
   inquirer
     .prompt([
       {
         type: "input",
         message: "What is your name?",
-        name: "employeeName"
+        name: "employeeName",
       },
       {
         type: "input",
         message: "What is your email?",
-        name: "employeeEmail"
+        name: "employeeEmail",
       },
       {
         type: "input",
         message: "What is your office number?",
-        name: "employeeOfficeNumber"
-      }
+        name: "employeeOfficeNumber",
+      },
     ])
-    .then(function(input) {
+    .then(function (input) {
       let manager = new Manager(
-        input.employeeNameid++,
+        input.employeeName,
+        id++,
         input.employeeEmail,
         input.employeeOfficeNumber
       );
 
-      allEmployee.push(manager)
-      console.log(allEmployee)
-      menu()
+      allEmployee.push(manager);
+      console.log(allEmployee);
+      menu();
     });
 
   // let manager = new Manager()
 }
+menu();

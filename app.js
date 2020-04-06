@@ -4,6 +4,10 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const fs = require("fs");
 
+let card = require("./card");
+
+let body = require("./body");
+
 const allEmployee = [];
 let id = 1;
 function menu() {
@@ -21,15 +25,24 @@ function menu() {
         addEngineer();
       } else if (input.addEmployee === "add intern") {
         addIntern();
-      }
-      else if(input.addEmployee === "Exit") {
+      } else if (input.addEmployee === "Exit") {
         exit();
       }
     });
 }
 
-function exit(){
-  
+function exit() {
+for (let index = 0; index < allEmployee.length; index++) {
+ 
+  var newCard = card(allEmployee);
+
+  var newBody = body(newCard);
+
+  fs.writeFile("./index.html", newBody, function (error) {});
+}
+
+
+ 
 }
 
 function addEngineer() {

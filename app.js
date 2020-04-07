@@ -32,17 +32,22 @@ function menu() {
 }
 
 function exit() {
-for (let index = 0; index < allEmployee.length; index++) {
- 
-  var newCard = card(allEmployee);
-
-  var newBody = body(newCard);
-
+  var newCard = "";
+  for (let index = 0; index < allEmployee.length; index++) {
+    if (index % 5 === 0) {
+      newCard +=
+        "<div class='row mt-5'><div class = 'col-sm-3'>" +
+        card(allEmployee[index]) +
+        "</div>";
+    } else if (index % 5 === 4) {
+      newCard += "</div>";
+    } else {
+      newCard +=
+        "<div class = 'col-sm-3'>" + card(allEmployee[index]) + "</div>";
+    }
+    var newBody = body(newCard);
+  }
   fs.writeFile("./index.html", newBody, function (error) {});
-}
-
-
- 
 }
 
 function addEngineer() {

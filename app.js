@@ -1,10 +1,15 @@
+// importing constructors (stores data) 
+
 const inquirer = require("inquirer");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+// fs = file system, this is an object to manipulate the file system, data can be added/manipulated. FS is needed 
 const fs = require("fs");
 
+// creating html cards for each employee
 let card = require("./card");
+
 
 let body = require("./body");
 
@@ -30,6 +35,7 @@ function menu() {
       }
     });
 }
+
 
 function exit() {
   var newCard = "";

@@ -1,10 +1,13 @@
 function card (data){
+  
+  // trinary operator = if and else if , before the ? is a comparison , after the ? is a true statement, after : is a false statement 
   var result = (`
   <div class="card text-center">
     <div class="card-header">
      ${data.name}
      <br>
-     <i class="fas fa-coffee"></i>
+     ${data.getRole()==="Manager"? " <i class='fas fa-coffee'></i>": data.getRole()==="Engineer"? "<i class='fas fa-glasses'></i>": "<i class='fas fa-user-graduate'></i>"}
+    
      ${data.getRole()}
      <br>
     
